@@ -32,10 +32,6 @@ int main(int argc, char *argv[])
         alpha = atof(argv[6]);
         beta = atof(argv[7]);
         rho = atof(argv[8]);
-
-        cout << alpha << beta << endl
-             << endl
-             << endl;
     }
     time_t start, end;
 
