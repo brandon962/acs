@@ -133,9 +133,10 @@ public:
                     }
                 }
                 checkDistance();
-                if (walk_length[min_ant] < 500)
+                keep_fix = fix2OPTAll(min_ant);
+                if (walk_length[min_ant] < 690)
                 {
-                    keep_fix = fix2OPTAll(min_ant);
+
                     while (keep_fix)
                     {
                         keep_fix = fix2OPTAll(min_ant);
@@ -148,16 +149,18 @@ public:
                 checkDistance();
                 for (int k = 0; k < ants; k++)
                 {
-
-                    if (walk_length[k] < 480)
+                    keep_fix = fix2OPTAll(k);
+                    if (walk_length[k] < 500)
                     {
-                        keep_fix = fix2OPTAll(k);
+
                         while (keep_fix)
                         {
                             keep_fix = fix2OPTAll(k);
                         }
                     }
 
+                    checkDistance();
+                    changeNeighbor();
                     checkDistance();
                     if (walk_length[k] < min_length)
                     {
@@ -179,7 +182,16 @@ public:
                              << endl;*/
                     }
                 }
-
+                checkDistance();
+                min_ant = 1;
+                min_ant_length = __DBL_MAX__;
+                for (int k = 0; k < ants; k++)
+                {
+                    if (walk_length[k] < min_ant_length)
+                    {
+                        min_ant_length = walk_length[k];
+                    }
+                }
                 checkDistance();
                 pheromoneUpdateACS();
                 probabilityUpdate();
@@ -505,14 +517,18 @@ private:
     int fix2OPTAll(int a)
     {
         double temp_length = walk_length[a];
+
         int *temp_solution = (int *)calloc(nodes + 2, sizeof(int));
         for (int i = 2; i < nodes + 1; i++)
         {
+
             for (int j = i + 3; j < nodes + 1; j++)
             {
+
                 temp_length = walk_length[a];
                 if (distance[solutions[a][i]][solutions[a][j - 1]] + distance[solutions[a][i + 1]][solutions[a][j]] > distance[solutions[a][i]][solutions[a][i + 1]] + distance[solutions[a][j - 1]][solutions[a][j]])
                 {
+
                     for (int k = 1; k < nodes + 2; k++)
                         temp_solution[k] = solutions[a][k];
 

@@ -1,5 +1,3 @@
-github : https://github.com/brandon962/acs
-
 1. 如何執行
 
 		a. 

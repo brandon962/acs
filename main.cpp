@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 {
     // basic parameter
     int runs = 30;
-    int iterations = 1000;
+    int iterations = 500;
     string input_filename = "eil51.txt";
 
     // aco parameter
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     int ants = 51;
     double pheromone = 1;
     double alpha = 1;
-    double beta = 2.8;
+    double beta = 3;
     double rho = 0.9;
 
     if (argc > 5)
