@@ -15,7 +15,7 @@
 			file input : eil51.txt
 
 		b.
-		123 
+		[main.exe] [runs] [iterations] [nodes] [ants] [pheromone] [alpha] [beta] [rho] [file_input]
 		
 
 
