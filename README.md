@@ -16,6 +16,11 @@
 
 		b.
 		[main.exe] [runs] [iterations] [nodes] [ants] [pheromone] [alpha] [beta] [rho] [file_input]
+
+2. 執行結果
+	
+		![image](https://github.com/brandon962/acs/blob/master/result.png)
+
 		
 
 
