@@ -19,7 +19,9 @@
 
 2. 執行結果
 	
+		![image] (https://github.com/brandon962/acs/blob/master/result.png)
 		![image](https://github.com/brandon962/acs/blob/master/result.png)
+![image](https://github.com/brandon962/acs/blob/master/result.png)
 
 		
 
