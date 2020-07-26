@@ -19,11 +19,15 @@
 
 2. 執行結果
 	
-![image](https://github.com/brandon962/acs/blob/master/result.png)
-		
 		執行30 run 
 		每run平均最短路徑 : 432.807
 		曾發現最短路徑 : 428.872
 		總花費時間 : 34 秒
+
+![image](https://github.com/brandon962/acs/blob/master/path.png)
+
+3. 收斂圖
+
+![image](https://github.com/brandon962/acs/blob/master/convergence.png)
 
 
