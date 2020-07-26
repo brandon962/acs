@@ -16,7 +16,7 @@ public:
 
     // basic parameter
     int runs;
-    int generations;
+    int iterations;
     string input_filename;
     string output_filename;
 

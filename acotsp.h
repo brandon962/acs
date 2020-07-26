@@ -34,7 +34,7 @@ public:
     AcoTSP(int _r, int _g, int _n, int _a, double _p, double _alpha, double _beta, double _rho, string _ifilename)
     {
         runs = _r;
-        generations = _g;
+        iterations = _g;
         nodes = _n;
         ants = _a;
         pheromone = _p;
@@ -82,7 +82,7 @@ public:
         global_min_solution = (int *)calloc(nodes + 2, sizeof(int));
         global_min_length = __DBL_MAX__;
 
-        convergence = (double *)calloc(generations, sizeof(double));
+        convergence = (double *)calloc(iterations, sizeof(double));
 
         // read in the place table
         fp = fopen(input_filename.c_str(), "r");
@@ -105,6 +105,7 @@ public:
 
     int run()
     {
+        mssg();
         avg_length = 0.0;
         ever_min_length = __DBL_MAX__;
         for (int i = 0; i < runs; i++)
@@ -115,7 +116,7 @@ public:
 
             initialize();
             probabilityUpdate();
-            for (int j = 0; j < generations; j++)
+            for (int j = 0; j < iterations; j++)
             {
                 count++;
                 solutionConstruction();
@@ -148,7 +149,7 @@ public:
                 for (int k = 0; k < ants; k++)
                 {
 
-                    if (walk_length[k] < 460)
+                    if (walk_length[k] < 480)
                     {
                         keep_fix = fix2OPTAll(k);
                         while (keep_fix)
@@ -208,13 +209,14 @@ public:
 
             fclose(fp);
         }
+        cout << endl;
         cout << "avg length is : " << avg_length / runs << endl;
         cout << "best length is : " << global_min_length;
         cout << ", at : " << min_solutione_run << " run" << endl;
 
         string convergence_output_file = "data/convergence.txt";
         fp = fopen(convergence_output_file.c_str(), "w");
-        for (int i = 0; i < generations; i++)
+        for (int i = 0; i < iterations; i++)
         {
             convergence[i] /= runs;
             fprintf(fp, "%d %f%s", i * ants, convergence[i], "\n");
@@ -232,7 +234,7 @@ public:
         string global_min_avglength_output_file = "data/minavglength.txt";
         fp = fopen(global_min_avglength_output_file.c_str(), "w");
 
-        for (int i = 0; i < generations; i++)
+        for (int i = 0; i < iterations; i++)
         {
             fprintf(fp, "%d %f%s", i * ants, avg_length / runs, "\n");
         }
@@ -241,6 +243,21 @@ public:
     }
 
 private:
+    void mssg()
+    {
+        cout << "ant colony system." << endl;
+        cout << "runs : " << runs << endl;
+        cout << "iterations : " << iterations << endl;
+        cout << "nodes : " << nodes << endl;
+        cout << "ants number : " << ants << endl;
+        cout << "pheromone : " << pheromone << endl;
+        cout << "alpha(pheromone ratio) : " << alpha << endl;
+        cout << "beta(distance ratio) : " << beta << endl;
+        cout << "rho(evaporation) : " << rho << endl;
+        cout << "input filename : " << input_filename << endl;
+        cout << endl;
+    }
+
     void initialize()
     {
         min_length = __DBL_MAX__;
@@ -417,8 +434,8 @@ private:
                 pheromone_table[i][j][0] *= rho;
                 if (min_length < 450)
                     dtemp = pheromone_table[i][j][0];
-                if (pheromone_table[i][j][0] < 0.00001)
-                    pheromone_table[i][j][0] = 0.00001;
+                if (pheromone_table[i][j][0] < 0.000001)
+                    pheromone_table[i][j][0] = 0.000001;
             }
 
         spray = pheromone / min_ant_length;
