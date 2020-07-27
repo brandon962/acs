@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     double pheromone = 1;
     double alpha = 1;
     double beta = 3;
-    double rho = 0.9;
+    double rho = 0.85;
 
     if (argc > 5)
     {
